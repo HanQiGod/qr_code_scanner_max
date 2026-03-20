@@ -6,6 +6,8 @@ I am developing a new plugin [mobile_scanner](https://pub.dev/packages/mobile_sc
 
 # QR Code Scanner Max
 
+## 技术支持邮箱(1539841933@qq.com)
+
 [![pub package](https://img.shields.io/pub/v/qr_code_scanner_max?include_prereleases)](https://pub.dartlang.org/packages/qr_code_scanner_max)
 [![Join the chat](https://img.shields.io/discord/829004904600961054)](https://discord.gg/aZujk84f6V)
 [![GH Actions](https://github.com/juliuscanute/qr_code_scanner_max/workflows/dart/badge.svg)](https://github.com/juliuscanute/qr_code_scanner_max/actions)

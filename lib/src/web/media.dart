@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 // This is here because dart doesn't seem to support this properly
 // https://stackoverflow.com/questions/61161135/adding-support-for-navigator-mediadevices-getusermedia-to-dart
 

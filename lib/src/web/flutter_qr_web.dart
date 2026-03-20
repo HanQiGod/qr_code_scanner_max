@@ -31,7 +31,7 @@ class WebQrView extends StatefulWidget {
       : super(key: key);
 
   @override
-  _WebQrViewState createState() => _WebQrViewState();
+  State<WebQrView> createState() => _WebQrViewState();
 
   static html.DivElement vidDiv =
       html.DivElement(); // need a global for the registerViewFactory
@@ -57,14 +57,14 @@ class _WebQrViewState extends State<WebQrView> {
   // html.CanvasRenderingContext2D ctx;
   bool _currentlyProcessing = false;
 
-  QRViewControllerWeb? _controller;
+  QRViewController? _controller;
 
   late Size _size = const Size(0, 0);
   Timer? timer;
   String? code;
   String? _errorMsg;
   html.VideoElement video = html.VideoElement();
-  String viewID = 'QRVIEW-' + DateTime.now().millisecondsSinceEpoch.toString();
+  String viewID = 'QRVIEW-${DateTime.now().millisecondsSinceEpoch}';
 
   final StreamController<Barcode> _scanUpdateController =
       StreamController<Barcode>();
@@ -130,7 +130,7 @@ class _WebQrViewState extends State<WebQrView> {
       //     await html.window.navigator.mediaDevices.getUserMedia(constraints);
       // straight JS:
       if (_controller == null) {
-        _controller = QRViewControllerWeb(this);
+        _controller = _QRViewControllerWeb(this);
         widget.onPlatformViewCreated(_controller!);
       }
       var stream = await promiseToFuture(getUserMedia(constraints));
@@ -253,10 +253,10 @@ class _WebQrViewState extends State<WebQrView> {
   }
 }
 
-class QRViewControllerWeb implements QRViewController {
+class _QRViewControllerWeb implements QRViewController {
   final _WebQrViewState _state;
 
-  QRViewControllerWeb(this._state);
+  _QRViewControllerWeb(this._state);
   @override
   void dispose() => _state.cancel();
 
@@ -326,7 +326,9 @@ class QRViewControllerWeb implements QRViewController {
 }
 
 Widget createWebQrView(
-        {onPlatformViewCreated, onPermissionSet, CameraFacing? cameraFacing}) =>
+        {required QRViewCreatedCallback onPlatformViewCreated,
+        PermissionSetCallback? onPermissionSet,
+        CameraFacing? cameraFacing}) =>
     WebQrView(
       onPlatformViewCreated: onPlatformViewCreated,
       onPermissionSet: onPermissionSet,

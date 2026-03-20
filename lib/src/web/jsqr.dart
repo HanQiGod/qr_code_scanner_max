@@ -1,10 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 @JS()
 library jsqr;
 
 import 'package:js/js.dart';
 
 @JS('jsQR')
-external Code jsQR(var data, int? width, int? height);
+external Code jsQR(Object data, int? width, int? height);
 
 @JS()
 class Code {
